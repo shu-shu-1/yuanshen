@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>工具展示</title>
+    <style>
+        .card-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 20px;
+        }
+        .card {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            overflow: hidden;
+            padding: 10px;
+        }
+        .card img {
+            width: 80px;
+            height: 80px;
+            margin-right: 10px;
+        }
+        .card-content {
+            flex: 1;
+        }
+        .card-content h3 {
+            margin: 0 0 5px;
+        }
+        .card-content p {
+            margin: 0;
+            font-size: 14px;
+            color: #666;
+        }
+        .open-button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-left: auto; /* 将按钮推到最右边 */
+            margin-right: 10px; /* 增加右边距 */
+        }
+        .embed-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .embed-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 80%;
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .embed-content iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="card-container">
+        <!-- 示例卡片 -->
+        <div class="card">
+            <img src="map.png" alt="工具1图标">
+            <div class="card-content">
+                <h3>提瓦特大地图</h3>
+                <p>官方大地图，包含提瓦特全部资源、采集攻略、分层指引等。</p>
+            </div>
+            <button class="open-button" data-url="https://webstatic.mihoyo.com/app/ys-map-cn/index.html">打开</button>
+        </div>
+        <!-- 可以添加更多卡片 -->
+    </div>
+
+    <div class="embed-container" id="embed-container">
+        <div class="embed-content">
+            <iframe id="embed-iframe" src="" frameborder="0"></iframe>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.open-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const url = this.getAttribute('data-url');
+                document.getElementById('embed-iframe').src = url;
+                document.getElementById('embed-container').style.display = 'block';
+            });
+        });
+
+        document.getElementById('embed-container').addEventListener('click', function() {
+            this.style.display = 'none';
+            document.getElementById('embed-iframe').src = '';
+        });
+    </script>
+</body>
+</html>

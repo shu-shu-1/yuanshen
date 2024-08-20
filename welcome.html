@@ -1,0 +1,114 @@
+<!--
+ * @Author: error: error: git config user.name & please set dead value or install git && error: git config user.email & please set dead value or install git & please set dead value or install git
+ * @Date: 2024-08-20 19:08:10
+ * @LastEditors: error: error: git config user.name & please set dead value or install git && error: git config user.email & please set dead value or install git & please set dead value or install git
+ * @LastEditTime: 2024-08-20 19:53:43
+ * @FilePath: \yuanshen\welcome.html
+ * @Description: 
+ * 
+ * Copyright (c) 2024 by shu-shu-1 3458222@qq.com, All Rights Reserved. 
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>title</title>
+    <style>
+        @font-face {
+            font-family: 'CustomFont';
+            src: url('https://www.jikexinao.com/api/public/file/3b67b88ebd42490ea017d1301bf71840.ttf') format('truetype');
+        }
+        body {
+            font-family: 'CustomFont', sans-serif;
+            font-size: 16px;
+            line-height: 1.5;
+            /* color: #333; */
+        }
+        .center {
+            text-align: center;
+        }
+        svg {
+            width: 1.5em;
+            height: 1.5em;
+            vertical-align: middle;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="center">
+    <h2>🎉 欢迎来到小树的原神站</h2>
+    <h3>原神一言</h3>
+    <hr>
+    <!--放到你想放的位置-->
+    <span id="ys"></span>
+    <!--放到body底部-->
+    <script>
+        const element = document.getElementById('ys');
+        if (!element) {
+            throw new Error('Element with id "ys" not found');
+        }
+
+        element.innerText = '加载中...';
+        fetch('sentence.txt')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+            return response.text();
+        })
+        .then(data => {
+            if (!data) {
+                throw new Error('File is empty or not readable');
+            }
+            const lines = data.split('\n');
+            if (lines.length === 0) {
+                throw new Error('File does not contain any lines');
+            }
+            const randomLine = lines[Math.floor(Math.random() * lines.length)];
+            element.innerText = randomLine;
+        })
+        .catch(error => {
+            console.error('Error fetching ys:', error);
+            element.innerText = 'Error fetching ys';
+        });
+        function change() {
+            const element = document.getElementById('ys');
+            if (!element) {
+                throw new Error('Element with id "ys" not found');
+            }
+
+            element.innerText = '加载中...';
+            fetch('sentence.txt')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.text();
+            })
+            .then(data => {
+                if (!data) {
+                    throw new Error('File is empty or not readable');
+                }
+                const lines = data.split('\n');
+                if (lines.length === 0) {
+                    throw new Error('File does not contain any lines');
+                }
+                const randomLine = lines[Math.floor(Math.random() * lines.length)];
+                element.innerText = randomLine;
+            })
+            .catch(error => {
+                console.error('Error fetching ys:', error);
+                element.innerText = 'Error fetching ys';
+            });
+        }
+
+    </script>
+
+    <br>
+    <div onclick="change()"><svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M19.933 13.041a8 8 0 1 1-9.925-8.788c3.899-1 7.935 1.007 9.425 4.747"/><path d="M20 4v5h-5"/></g></svg></div>
+
+</div>
+</body>
+</html>
